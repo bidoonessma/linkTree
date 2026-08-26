@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-labelledby="t d">
+  <title id="t">LAAM</title>
+  <desc id="d">LAAM fashion marketplace wordmark</desc>
+  <rect width="320" height="96" rx="14" fill="none"/>
+  <g transform="translate(16,12)" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round">
+    <path d="M39 4c-2 15 11 17 10 30-1 9-9 12-12 22"/>
+    <path d="M29 13c1 11 10 14 8 24-1 7-7 10-10 18"/>
+    <path d="M20 23c1 8 7 10 7 18 0 6-5 9-8 14"/>
+  </g>
+  <line x1="78" y1="20" x2="78" y2="76" stroke="#111" stroke-width="3"/>
+  <text x="98" y="61" font-family="Arial, Helvetica, sans-serif" font-size="49" font-weight="300" fill="#111" letter-spacing="8">LAAM</text>
+</svg>

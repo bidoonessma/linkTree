@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 96" role="img" aria-labelledby="t d">
+  <title id="t">Daraz Mall</title>
+  <desc id="d">Daraz Mall wordmark</desc>
+  <rect width="320" height="96" rx="14" fill="none"/>
+  <g transform="translate(10,13)">
+    <path d="M8 20 34 5l26 15v32L34 67 8 52Z" fill="#F85606"/>
+    <path d="m34 5 26 15-26 15L8 20Z" fill="#FF7A28"/>
+    <path d="M34 35 60 20v32L34 67Z" fill="#E94A00"/>
+    <path d="M34 35 8 20v32l26 15Z" fill="#FF650C"/>
+    <path d="M34 35 47 28 34 20 21 28Z" fill="#fff" opacity=".95"/>
+  </g>
+  <text x="84" y="54" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800" fill="#F85606" letter-spacing="-1.5">Daraz</text>
+  <text x="205" y="54" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="#3F0686">Mall</text>
+</svg>
