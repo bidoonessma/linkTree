@@ -127,7 +127,11 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-button dark" href="https://wa.me/923130078658" aria-label="WhatsApp — replace this link with your WhatsApp chat URL">
+      <a class="link-button dark"
+   href="YOUR-WHATSAPP-LINK"
+   aria-label="WhatsApp"
+   data-track-click
+   data-content="whatsapp">
         <span class="icon-circle light" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M20 11.6A8 8 0 0 1 8.3 18.7L4 20l1.3-4.1A8 8 0 1 1 20 11.6Z"/><path d="M9 8.5c.7 2.4 2.1 3.8 4.5 4.5"/></svg>
         </span>
@@ -140,7 +144,8 @@
       <p id="marketplaces-title" class="section-label">Marketplace</p>
       <div class="market-grid">
         <!-- Replace # with your official Bidoon Essma Daraz Mall Store URL. -->
-        <a href="https://www.daraz.pk/shop/qfcmdvxa/" class="market-card daraz-card" aria-label="Shop Bidoon Essma at the official Daraz Mall Store">
+        <a href="https://www.daraz.pk/shop/qfcmdvxa/" class="market-card daraz-card" aria-label="Shop Bidoon Essma at the official Daraz Mall Store" data-track-click
+   data-content="daraz">
           <span class="market-logo-wrap daraz-logo-wrap" aria-hidden="true">
             <img src="daraz-mall.svg" alt="" class="market-logo daraz-logo" />
           </span>
@@ -151,7 +156,8 @@
           <span class="market-arrow" aria-hidden="true">→</span>
         </a>
         <!-- Replace # with your Bidoon Essma LAAM Store URL. -->
-        <a href="https://laam.com/brands/bidoon-essma" class="market-card laam-card" aria-label="Shop Bidoon Essma on LAAM">
+        <a href="https://laam.com/brands/bidoon-essma" class="market-card laam-card" aria-label="Shop Bidoon Essma on LAAM" data-track-click
+   data-content="laam">
           <span class="market-logo-wrap laam-logo-wrap" aria-hidden="true">
             <img src="laam-logo.svg" alt="" class="market-logo laam-logo" />
           </span>
@@ -180,11 +186,16 @@
     <section class="socials" aria-label="Social media links">
       <p class="section-label">Follow Bidoon Essma</p>
       <div class="social-row">
-        <a href="https://www.instagram.com/bidoonessma_/" class="social-icon instagram" aria-label="Instagram" title="Instagram"><img src="instagram.svg" alt="" /></a>
-        <a href="https://www.tiktok.com/@bidoon.essma" class="social-icon tiktok" aria-label="TikTok" title="TikTok"><img src="tiktok-transparent.svg" alt="" /></a>
-        <a href="https://www.facebook.com/Bidoonessma/" class="social-icon facebook" aria-label="Facebook" title="Facebook"><img src="facebook.svg" alt="" /></a>
-        <a href="https://www.youtube.com/@bidoonessma" class="social-icon youtube" aria-label="YouTube" title="YouTube"><img src="youtube.svg" alt="" /></a>
-        <a href="https://wa.me/923130078658" class="social-icon whatsapp" aria-label="WhatsApp" title="WhatsApp"><img src="whatsapp.svg" alt="" /></a>
+        <a href="https://www.instagram.com/bidoonessma_/" class="social-icon instagram" aria-label="Instagram" title="Instagram" data-track-click
+   data-content="instagram_social"><img src="instagram.svg" alt="" /></a>
+        <a href="https://www.tiktok.com/@bidoon.essma" class="social-icon tiktok" aria-label="TikTok" title="TikTok" data-track-click
+       data-content="tiktok_social"><img src="tiktok-transparent.svg" alt="" /></a>
+        <a href="https://www.facebook.com/Bidoonessma/" class="social-icon facebook" aria-label="Facebook" title="Facebook" data-track-click
+       data-content="facebook_social"><img src="facebook.svg" alt="" /></a>
+        <a href="https://www.youtube.com/@bidoonessma" class="social-icon youtube" aria-label="YouTube" title="YouTube" data-track-click
+       data-content="youtube_social"><img src="youtube.svg" alt="" /></a>
+        <a href="https://wa.me/923130078658" class="social-icon whatsapp" aria-label="WhatsApp" title="WhatsApp" data-track-click
+       data-content="whatsapp_social"><img src="whatsapp.svg" alt="" /></a>
       </div>
     </section>
 
@@ -193,11 +204,13 @@
       <span>© <span id="year">2026</span> Bidoon Essma</span>
     </footer>
   </main>
-  <script>
+ <script>
   const params = new URLSearchParams(window.location.search);
 
+  // Platform where visitor entered the bio page
   const source = params.get("source") || "direct_linkpage";
 
+  // Add UTM tracking to Shopify links
   document.querySelectorAll("a[data-track-shopify]").forEach((link) => {
     const url = new URL(link.href);
 
@@ -213,6 +226,27 @@
 
     link.href = url.toString();
   });
+
+  // Send button clicks to Google Analytics
+  document
+    .querySelectorAll("a[data-track-shopify], a[data-track-click]")
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        if (typeof gtag === "function") {
+          gtag("event", "bio_link_click", {
+            source_platform: source,
+            link_name:
+              link.dataset.content ||
+              link.getAttribute("aria-label") ||
+              "unknown",
+            destination_url: link.href,
+            destination_type: link.hasAttribute("data-track-shopify")
+              ? "shopify"
+              : "external"
+          });
+        }
+      });
+    });
 </script>
 </body>
 </html>
