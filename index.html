@@ -209,6 +209,12 @@
 
   // Platform where visitor entered the bio page
   const source = params.get("source") || "direct_linkpage";
+  // Track visits to the bio page by source platform
+if (typeof gtag === "function") {
+  gtag("event", "bio_page_view", {
+    source_platform: source
+  });
+}
 
   // Add UTM tracking to Shopify links
   document.querySelectorAll("a[data-track-shopify]").forEach((link) => {
