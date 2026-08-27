@@ -208,13 +208,20 @@
   const params = new URLSearchParams(window.location.search);
 
   // Platform where visitor entered the bio page
-  const source = params.get("source") || "direct_linkpage";
+  let source =
+    params.get("source") ||
+    params.get("utm_source") ||
+    "direct_linkpage";
+
+  if (source === "ig") source = "instagram";
+  if (source === "fb") source = "facebook";
+
   // Track visits to the bio page by source platform
-if (typeof gtag === "function") {
-  gtag("event", "bio_page_view", {
-    source_platform: source
-  });
-}
+  if (typeof gtag === "function") {
+    gtag("event", "bio_page_view", {
+      source_platform: source
+    });
+  }
 
   // Add UTM tracking to Shopify links
   document.querySelectorAll("a[data-track-shopify]").forEach((link) => {
