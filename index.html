@@ -44,7 +44,8 @@
     </section>
 
     <section class="links" aria-label="Shop links">
-      <a class="link-button primary" href="https://bidoonessma.com/" target="_blank" rel="noopener">
+      <a class="link-button primary" href="https://bidoonessma.com/" target="_blank" rel="noopener" data-track-shopify
+   data-content="shop_home">
         <span class="icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8Zm3 0V6a3 3 0 0 1 6 0v2"/></svg>
         </span>
@@ -53,7 +54,8 @@
       </a>
 
       <!-- Replace the collection URLs below with the exact Shopify links you created. -->
-      <a class="link-button" href="https://bidoonessma.com/collections/new-arrivals" target="_blank" rel="noopener">
+      <a class="link-button" href="https://bidoonessma.com/collections/new-arrivals" target="_blank" rel="noopener" data-track-shopify
+   data-content="new_arrivals">
         <span class="icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="m12 3 1.4 4.6L18 9l-4.6 1.4L12 15l-1.4-4.6L6 9l4.6-1.4L12 3ZM18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8L18 15Z"/></svg>
         </span>
@@ -61,7 +63,12 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-button" href="https://bidoonessma.com/collections/best-sellers" target="_blank" rel="noopener">
+      <a class="link-button"
+   href="https://bidoonessma.com/collections/best-sellers"
+   target="_blank"
+   rel="noopener"
+   data-track-shopify
+   data-content="best_sellers">
         <span class="icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.7A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>
         </span>
@@ -69,15 +76,24 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-button" href="https://bidoonessma.com/collections/offers-bundles" aria-label="SPECIAL OFFERS" >
+      <a class="link-button"
+   href="https://bidoonessma.com/collections/offers-bundles"
+   aria-label="SPECIAL OFFERS"
+   data-track-shopify
+   data-content="special_offers">
         <span class="icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M4 9h16v11H4zM12 9v11M4 13h16M7 9c-2-2 0-5 3-2l2 2M17 9c2-2 0-5-3-2l-2 2"/></svg>
         </span>
-        <span class="link-copy"><strong>OFFERS  </strong><small>Bundle save on your favourites</small></span>
+        <span class="link-copy"><strong>SPECIAL OFFERS</strong>
+<small>Save on selected favourites</small></span>
         <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-button" href="https://bidoonessma.com/collections/hijabs" aria-label="Shop hijabs — add your Shopify collection URL">
+      <a class="link-button"
+   href="https://bidoonessma.com/collections/hijabs"
+   aria-label="Shop hijabs"
+   data-track-shopify
+   data-content="shop_hijabs">
         <span class="icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3.4-7 7.6V20h14v-9.4C19 6.4 16 3 12 3Zm-5 9c2.8 1.6 7.2 1.6 10 0"/></svg>
         </span>
@@ -85,7 +101,11 @@
         <span class="arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="link-button" href="https://bidoonessma.com/collections/niqabs" aria-label="Shop niqabs — add your Shopify collection URL">
+      <a class="link-button"
+   href="https://bidoonessma.com/collections/niqabs"
+   aria-label="Shop niqabs"
+   data-track-shopify
+   data-content="shop_niqabs">
         <span class="icon-circle" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3.5-7 8v9h14v-9c0-4.5-3-8-7-8Zm-4 8h8M9 14h6"/></svg>
         </span>
@@ -159,5 +179,23 @@
       <span>© <span id="year">2026</span> Bidoon Essma</span>
     </footer>
   </main>
+   const source = params.get("source") || "direct_linkpage";
+
+  document.querySelectorAll("a[data-track-shopify]").forEach((link) => {
+    const url = new URL(link.href);
+
+    url.searchParams.set("utm_source", source);
+    url.searchParams.set("utm_medium", "organic_social");
+    url.searchParams.set("utm_campaign", "bidoonessma_link_in_bio");
+
+    const content = link.dataset.content;
+
+    if (content) {
+      url.searchParams.set("utm_content", content);
+    }
+
+    link.href = url.toString();
+  });
+</script>
 </body>
 </html>
