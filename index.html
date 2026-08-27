@@ -179,7 +179,10 @@
       <span>© <span id="year">2026</span> Bidoon Essma</span>
     </footer>
   </main>
-   const source = params.get("source") || "direct_linkpage";
+  <script>
+  const params = new URLSearchParams(window.location.search);
+
+  const source = params.get("source") || "direct_linkpage";
 
   document.querySelectorAll("a[data-track-shopify]").forEach((link) => {
     const url = new URL(link.href);
